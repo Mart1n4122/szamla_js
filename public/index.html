@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Számlakezelő</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Számlakezelő Rendszer</h1>
+  </header>
+
+  <main>
+    <section class="form-section">
+      <h2>Új ügyfél</h2>
+      <form id="client-form">
+        <input type="text" id="client-name" placeholder="Név" required />
+        <input type="text" id="client-address" placeholder="Cím" required />
+        <input type="text" id="client-tax" placeholder="Adószám" required />
+        <button type="submit">Ügyfél hozzáadása</button>
+      </form>
+    </section>
+
+    <section class="form-section">
+      <h2>Új számla</h2>
+      <form id="invoice-form">
+        <input type="text" id="invoice-number" placeholder="Számlaszám" required />
+        <select id="issuer-id" required></select>
+        <select id="client-id" required></select>
+        <input type="date" id="issue-date" required />
+        <input type="date" id="delivery-date" required />
+        <input type="date" id="due-date" required />
+        <input type="number" id="total" placeholder="Végösszeg (Ft)" required />
+        <input type="number" id="vat" placeholder="ÁFA (%)" value="27" required />
+        <button type="submit">Számla mentése</button>
+      </form>
+    </section>
+
+    <section>
+      <h2>Számlák</h2>
+      <div id="invoice-list"></div>
+    </section>
+  </main>
+  
+  <script src="script.js"></script>
+</body>
+</html>
