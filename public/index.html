@@ -7,42 +7,49 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>Számlakezelő Rendszer</h1>
-  </header>
+  <div class="container">
+    <h1 class="title">📄 Számlakezelő rendszer</h1>
 
-  <main>
-    <section class="form-section">
-      <h2>Új ügyfél</h2>
-      <form id="client-form">
-        <input type="text" id="client-name" placeholder="Név" required />
-        <input type="text" id="client-address" placeholder="Cím" required />
-        <input type="text" id="client-tax" placeholder="Adószám" required />
-        <button type="submit">Ügyfél hozzáadása</button>
-      </form>
+    <div class="form-columns">
+      <section class="card">
+        <h2>➕ Új ügyfél</h2>
+        <form id="client-form" class="form-grid">
+          <input type="hidden" id="client-id">
+          <input type="text" id="client-name" placeholder="Név" required>
+          <input type="text" id="client-address" placeholder="Cím" required>
+          <input type="text" id="client-tax" placeholder="Adószám" required>
+          <button type="submit">Mentés</button>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>🧾 Új számla</h2>
+        <form id="invoice-form" class="form-grid">
+          <input type="hidden" id="invoice-id">
+          <input type="text" id="invoice-number" placeholder="Számlaszám" required>
+          <select id="issuer-id" required></select>
+          <select id="client-id-select" required></select>
+          <input type="date" id="issue-date" required>
+          <input type="date" id="delivery-date" required>
+          <input type="date" id="due-date" required>
+          <input type="number" id="total" placeholder="Végösszeg (Ft)" required>
+          <input type="number" id="vat" placeholder="ÁFA (%)" value="27" required>
+          <button type="submit">Mentés</button>
+        </form>
+      </section>
+    </div>
+
+    <section class="card">
+      <h2>👤 Ügyfelek</h2>
+      <div id="client-list" class="invoice-list"></div>
     </section>
 
-    <section class="form-section">
-      <h2>Új számla</h2>
-      <form id="invoice-form">
-        <input type="text" id="invoice-number" placeholder="Számlaszám" required />
-        <select id="issuer-id" required></select>
-        <select id="client-id" required></select>
-        <input type="date" id="issue-date" required />
-        <input type="date" id="delivery-date" required />
-        <input type="date" id="due-date" required />
-        <input type="number" id="total" placeholder="Végösszeg (Ft)" required />
-        <input type="number" id="vat" placeholder="ÁFA (%)" value="27" required />
-        <button type="submit">Számla mentése</button>
-      </form>
+    <section class="card">
+      <h2>📋 Számlák</h2>
+      <div id="invoice-list" class="invoice-list"></div>
     </section>
+  </div>
 
-    <section>
-      <h2>Számlák</h2>
-      <div id="invoice-list"></div>
-    </section>
-  </main>
-  
   <script src="script.js"></script>
 </body>
 </html>

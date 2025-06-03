@@ -64,3 +64,26 @@ export const createInvoice = (data) => db.prepare(`
   data.issue_date, data.due_date, data.delivery_date,
   data.total, data.vat
 );
+
+export const getInvoiceById = (id) => db.prepare('SELECT * FROM invoices WHERE id = ?').get(id);
+
+export const updateInvoice = (id, data) => db.prepare(`
+  UPDATE invoices
+  SET invoice_number = ?, issuer_id = ?, client_id = ?, issue_date = ?, delivery_date = ?, due_date = ?, total = ?, vat = ?
+  WHERE id = ?
+`).run(data.invoice_number, data.issuer_id, data.client_id, data.issue_date, data.delivery_date, data.due_date, data.total, data.vat, id);
+
+export const updateClient = (id, data) => db.prepare(`
+    UPDATE clients
+    SET name = ?, address = ?, tax_number = ?
+    WHERE id = ?
+  `).run(data.name, data.address, data.tax_number, id);
+
+export const deleteInvoice = (id) => db.prepare('DELETE FROM invoices WHERE id = ?').run(id);
+
+export const deleteClient = (id) => {
+  db.prepare('DELETE FROM invoices WHERE client_id = ?').run(id);
+  return db.prepare('DELETE FROM clients WHERE id = ?').run(id);
+};
+export const getClientById = (id) => db.prepare('SELECT * FROM clients WHERE id = ?').get(id);
+
